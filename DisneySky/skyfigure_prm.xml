@@ -1,0 +1,275 @@
+
+<Joint
+  name="space"
+  linacceleration="0.0 0.0 9.8">
+
+  <Joint
+    name="BaseFrame"
+    jointtype="fixed" >
+
+    <Joint
+      name="BF"
+      jointtype="rotate" 
+      axis="z"
+      relposition="0.000000 0.000000 0.000000"
+      relattitude="0.999666 -0.018268 0.018301 -0.018268 0.001934 0.999831 -0.018301 -0.999831 0.001600">
+
+      <Joint
+        name="BS"
+        jointtype="rotate" 
+        axis="z"
+        relposition="0.000000 0.000000 0.000000"
+        relattitude="-0.018129 -0.001575 -0.999834 -0.999674 0.018031 0.018098 0.018000 0.999836 -0.001901">
+
+        <Joint
+          name="BT2"
+          jointtype="rotate" 
+          axis="z"
+          relposition="0.000000 0.000000 0.000000"
+          relattitude="0.000469 0.016394 0.999866 0.016394 0.999731 -0.016399 -0.999866 0.016399 0.000200">
+
+          <Joint
+            name="BSR"
+            jointtype="rotate" 
+            axis="z"
+            relposition="0.000000 0.000000 0.894800"
+            relattitude="0.000000 0.000000 1.000000 0.000000 1.000000 0.000000 -1.000000 0.000000 0.000000">
+
+            <Joint
+              name="Pv"
+              jointtype="rotate"
+              axis="z"
+              relposition="0.000000 0.000000 0.000000"
+              relattitude="-0.045498 0.998760 0.020199 0.044542 0.022228 -0.998760 -0.997971 -0.044542 -0.045498">
+            </Joint>  <!-- Pv -->
+          </Joint>  <!-- BSR -->
+        </Joint>  <!-- BT2 -->
+      </Joint>  <!-- BS -->
+    </Joint>  <!-- BF -->
+
+<!-- Left Leg -->
+    <Joint
+      name="BT"
+      jointtype="rotate" 
+      axis="z"
+      relposition="0.000000 0.098400 0.000000"
+      relattitude="0.999999 0.000000 0.001200 0.000000 1.000000 -0.000100 -0.001200 0.000100 0.999999">
+
+      <Joint
+        name="BF2"
+        jointtype="rotate" 
+        axis="z"
+        relposition="0.000000 0.000000 0.000000"
+        relattitude="0.999999 0.001200 0.000000 0.000000 -0.000100 1.000000 0.001200 -0.999999 -0.000100">
+
+        <Joint
+          name="BS2"
+          jointtype="rotate" 
+          axis="z"
+          relposition="0.000000 0.000000 0.000000"
+          relattitude="0.000000 0.000000 -1.000000 -1.000000 0.000000 0.000000 0.000000 1.000000 0.000000">
+
+          <Joint
+            name="BSL"
+            jointtype="rotate" 
+            axis="z"
+            relposition="0.894800 0.000000 0.000000"
+            relattitude="-1.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 -1.000000">
+
+<!-- pelvis -->
+            <Joint
+              name="P"
+              jointtype="rotate" 
+              axis="z"
+              relposition="0.000000 -0.083000 0.000000"
+              relattitude="-0.045498 0.998760 0.020199 0.044542 0.022228 -0.998760 -0.997971 -0.044542 -0.045498">
+
+              <Joint
+                name="TT"
+                jointtype="rotate" 
+                axis="z"
+                relposition="0.001848 0.000922 -0.041449"
+                relattitude="0.996900 0.046966 -0.063118 0.064219 -0.022319 0.997686 0.045448 -0.998647 -0.025266">
+
+                <Joint
+                  name="TS"
+                  jointtype="rotate" 
+                  axis="z"
+                  relposition="-0.003520 0.018568 -0.178214"
+                  relattitude="0.049422 0.015084 -0.998664 -0.029626 0.999468 0.013630 0.998338 0.028913 0.049842">
+
+                  <Joint
+                    name="TF"
+                    jointtype="rotate" 
+                    axis="z"
+                    relposition="0.001831 0.000351 -0.024554"
+                    relattitude="-0.054969 -0.998202 -0.023900 -0.039206 0.026076 -0.998891 0.997718 -0.053971 -0.040569">
+
+                    <Joint
+                      name="HT"
+                      jointtype="rotate"
+                      axis="z"
+                      relposition="0.046959 0.448967 0.002474"
+                      relattitude="0.999048 -0.024607 0.036030 -0.035748 0.011814 0.999291 -0.025016 -0.999627 0.010923">
+
+                      <Joint
+                        name="HN"
+                        jointtype="rotate"
+                        axis="z"
+                        relposition="-0.006772 -0.000031 -0.020576"
+                        relattitude="0.999915 -0.001744 0.012888 -0.012854 0.018469 0.999747 -0.001982 -0.999828 0.018445">
+
+                        <Joint
+                          name="HTLT"
+                          jointtype="rotate"
+                          axis="z"
+                          relposition="0.000061 0.000722 -0.003915"
+                          relattitude="0.178170 0.039722 -0.983198 -0.981242 0.081920 -0.174506 0.073612 0.995847 0.053573">
+
+                        </Joint>  <!-- HTLT -->
+                      </Joint>  <!-- HN -->
+                    </Joint>  <!-- HT -->
+<!-- left arm -->
+                    <Joint
+                      name="LSS"
+                      jointtype="slide" 
+                      axis="z"
+                      relposition="0.000000 0.000000 0.000000"
+                      relattitude="0.998414 -0.015492 -0.054124 0.036071 -0.562096 0.826285 -0.043224 -0.826927 -0.560646">
+
+                      <Joint
+                        name="LAF"
+                        jointtype="rotate" 
+                        axis="z"
+                        relposition="0.014703 -0.006471 0.359520"
+                        relattitude="0.997883 -0.061425 0.021344 0.018659 0.584888 0.810899 -0.062293 -0.808785 0.584796">
+
+                        <Joint
+                          name="LAO"
+                          jointtype="rotate" 
+                          axis="z"
+                          relposition="-0.000023 -0.013832 0.003948"
+                          relattitude="0.035322 -0.005331 0.999362 0.999136 0.022107 -0.035196 -0.021905 0.999741 0.006107">
+
+                          <Joint
+                            name="LAS"
+                            jointtype="rotate" 
+                            axis="z"
+                            relposition="0.022926 0.000017 0.018031"
+                            relattitude="-0.025054 -0.995936 0.086508 0.012317 0.086221 0.996200 -0.999610 0.026024 0.010107">
+
+                            <Joint
+                              name="LE"
+                              jointtype="rotate" 
+                              axis="z"
+                              relposition="0.003002 -0.017135 0.317936"
+                              relattitude="-0.023821 -0.036930 0.999034 0.998717 0.043796 0.025433 -0.044692 0.998358 0.035839">
+
+                              <Joint
+                                name="LWT"
+                                jointtype="rotate" 
+                                axis="z"
+                                relposition="-0.015828 0.002416 -0.036573"
+                                relattitude="-0.104642 0.994496 -0.005327 0.047520 0.010351 0.998817 0.993374 0.104265 -0.048342">
+
+                                <Joint
+                                  name="LWIO"
+                                  jointtype="rotate" 
+                                  axis="z"
+                                  relposition="-0.027300 -0.003795 0.264572"
+                                  relattitude="-0.996060 0.082667 -0.032101 -0.019133 0.153136 0.988020 0.086593 0.984741 -0.150951">
+
+                                  <Joint
+                                    name="LWFB"
+                                    jointtype="rotate" 
+                                    axis="z"
+                                    relposition="0.000613 0.039818 0.006893"
+                                    relattitude="0.157511 -0.118449 -0.980388 -0.032647 0.991613 -0.125050 0.986977 0.051703 0.152323">
+
+                                  </Joint>  <!-- LWFB -->
+                                </Joint>  <!-- LWIO -->
+                              </Joint>  <!-- LWT -->
+                            </Joint>  <!-- LE -->
+                          </Joint>  <!-- LAS -->
+                        </Joint>  <!-- LAO -->
+                      </Joint>  <!-- LAF -->
+                    </Joint>  <!-- LSS -->
+
+<!-- right arm -->
+                    <Joint
+                      name="RSS"
+                      jointtype="slide" 
+                      axis="z"
+                      relposition="0.000000 0.000000 0.000000"
+                      relattitude="0.999431 -0.024214 -0.023501 0.033184 0.579009 0.814646 -0.006119 -0.814962 0.579483">
+
+                      <Joint
+                        name="RAF"
+                        jointtype="rotate" 
+                        axis="z"
+                        relposition="0.020049 -0.001884 0.347345"
+                        relattitude="-0.997860 0.060486 -0.024853 0.017405 0.612013 0.790656 0.063034 0.788531 -0.611756">
+
+                        <Joint
+                          name="RAO"
+                          jointtype="rotate" 
+                          axis="z"
+                          relposition="0.000021 0.002951 -0.002957"
+                          relattitude="0.082301 0.002010 0.996606 0.995554 0.045803 -0.082306 -0.045813 0.998948 0.001768">
+
+                          <Joint
+                            name="RAS"
+                            jointtype="rotate" 
+                            axis="z"
+                            relposition="0.002111 -0.000172 -0.026648"
+                            relattitude="0.057266 -0.986018 -0.156488 -0.012640 0.156017 -0.987674 0.998279 0.058539 -0.003529">
+
+                            <Joint
+                              name="RE"
+                              jointtype="rotate" 
+                              axis="z"
+                              relposition="0.006929 0.012960 0.314035"
+                              relattitude="0.028412 -0.026276 -0.999251 0.987080 0.158438 0.023900 0.157691 -0.987019 0.030438">
+
+                              <Joint
+                                name="RWT"
+                                jointtype="rotate" 
+                                axis="z"
+                                relposition="0.005081 0.000182 0.017135"
+                                relattitude="0.057143 -0.998274 -0.013524 0.071748 0.017617 -0.997267 0.995785 0.056016 0.072630">
+
+                                <Joint
+                                  name="RWIO"
+                                  jointtype="rotate" 
+                                  axis="z"
+                                  relposition="0.030521 -0.018946 0.277088"
+                                  relattitude="-0.997501 0.062622 -0.032712 0.036231 0.055899 -0.997779 -0.060655 -0.996471 -0.058028">
+
+                                  <Joint
+                                    name="RWFB"
+                                    jointtype="rotate" 
+                                    axis="z"
+                                    relposition="0.001522 -0.014431 -0.015474"
+                                    relattitude="0.171181 -0.002845 0.985235 0.028921 0.999579 -0.002139 -0.984815 0.028860 0.171191">
+
+                                  </Joint>  <!-- RWFB -->
+                                </Joint>  <!-- RWIO -->
+                              </Joint>  <!-- RWT -->
+                            </Joint>  <!-- RE -->
+                          </Joint>  <!-- RAS -->
+                        </Joint>  <!-- RAO -->
+                      </Joint>  <!-- RAF -->
+                    </Joint>  <!-- RSS -->
+
+                  </Joint>  <!-- TF -->
+                </Joint>  <!-- TS -->
+              </Joint>  <!-- TT -->
+            </Joint>  <!-- P -->
+          </Joint>  <!-- BSL -->
+        </Joint>  <!-- BS2 -->
+      </Joint>  <!-- BF2 -->
+    </Joint>  <!-- BT -->
+<!-- Right Leg -->
+  </Joint>  <!-- BaseFrame -->
+</Joint>  <!-- space -->
+

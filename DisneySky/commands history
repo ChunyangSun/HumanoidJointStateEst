@@ -1,0 +1,8 @@
+./move test001 data/center.dat -step RAF -out RAF -scale 15 -time 10
+
+./move test002 data/center.dat -step RE -out RE -scale 15 -time 10
+
+./move test003 data/center.dat -step RE -out RE -scale 20 -time 10
+./move test004 data/center.dat -step RAO -out RAO -scale 20 -time 10
+./move test005 data/center.dat -step RAO -out RAO -scale 35 -time 10
+

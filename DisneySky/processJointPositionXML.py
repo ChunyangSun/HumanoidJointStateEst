@@ -4,7 +4,7 @@ import os, os.path
 #from pylab import *
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.axes3d import Axes3D
-
+from matplotlib import animation
 #fullpath = "./data/3/test003.center.RE.dat"
 fullpath = "./data/2nd/sinwave.out.dat"
 
@@ -18,7 +18,11 @@ scale_factor = np.array([1.0e-03 * x for x in scale_factor])
 zero_pos_value = [0, 0, 0, 3.7034, 2.4718, 1.8675, 3.7643, 1.9011, 0.0050, 0.9640, 3.9711, 4.0400, 0.3015, 3.9925, 2.8590, 3.5314, 3.8325, 3.5314, 3.8325, 4.0494, 3.9999, 2.9418, 3.7445, 0.5751, 1.8880, 2.9453, 0.0005651, 0.0059828]
 zero_pos_value[:] = np.array([1.0e+03 * x for x in zero_pos_value])
 
+# initialize axis for animation
+# ax = plt.axes(xlim=(0, 5), ylim=(0, 5))
+# jointTraj, = ax.plot([], [], lw=3)
 
+ 
 def getJointDict(): 
 	print  "getJointDict"
 	
@@ -32,7 +36,7 @@ def getJointDict():
 	joint_dict_prm = dict()
 
 	joint_dict_util = {joint_names[i]: [scale_factor[i], zero_pos_value[i]] for i in xrange(len(joint_names))}
-	print joint_dict_util["BF"][0], joint_dict_util["BF"][1]
+	# print joint_dict_util["BF"][0], joint_dict_util["BF"][1]
 
 	for joint in root.iter('Joint'):
 		if "relposition" in joint.attrib and "relattitude" in joint.attrib:
@@ -43,14 +47,15 @@ def getJointDict():
 			# get a dictionary containing position and rotation matrix 
 			joint_dict_prm[joint.get('name')] = [np.array(nineValuesList.split(" ")).reshape(3,3), np.array(relpositionList.split(" "))]
 		
-		print count
-		count = count + 1
-		print 
+		# print count
+		# count = count + 1
+		# print 
 
-	print "size", len(joint_dict_util), np.shape(relattitude), len(name) # 26 , 32, 32 
+	# print "size", len(joint_dict_util), np.shape(relattitude), len(name) # 26 , 32, 32 
 	return joint_dict_util, joint_dict_prm
 
 def readJointPosData(joint_dict_util): 
+	print "readJointPosData"
 	time_stamp_list = []
 	left_arm_dict = dict()
 	RAF_rel_pos_list= []
@@ -58,10 +63,6 @@ def readJointPosData(joint_dict_util):
 	RAS_rel_pos_list = []
 	RE_rel_pos_list = []
 
-
-	# for root, _, files in subdirs:
- #    	for f in files:
- #    		fullpath = os.path.join(root, f)
 	for line in open(fullpath, 'r'):
 		item = line.rstrip() # strip off newline and any other trailing whitespace
 		itemList = item.split("\t")
@@ -94,6 +95,7 @@ def readJointPosData(joint_dict_util):
 	return big_list
 
 def getTraj(big_list, joint_dict_prm):
+	print "getTraj"
 	H_RAF_ini = np.zeros([4,4])
 	H_RAS_ini = np.zeros([4,4])
 	H_RAO_ini = np.zeros([4,4])
@@ -142,6 +144,30 @@ def getTraj(big_list, joint_dict_prm):
 	pos_list = np.array(pos_list)
 	time_stamp_list = big_list[0]
 
+
+	return pos_list
+
+# animation init and update function buggy
+# def init():
+#     jointTraj.set_data([], [])
+ 
+# def update(n): 
+#     # n = frame counter
+#     # calculate the positions of the pendulums
+ 
+#     x = pos_list[n,0]
+#     y = pos_list[n,1]
+#     z = pos_list[n,2]
+    
+#     # update the line data
+#     jointTraj.set_data([0 ,x], [0 ,y], [0,z])
+#     return jointTraj
+
+def main(): 
+	[joint_dict_util, joint_dict_prm] = getJointDict()
+	big_list = readJointPosData(joint_dict_util)
+	pos_list = getTraj(big_list, joint_dict_prm)
+
 	fig = plt.figure(figsize=(14,6))
 	ax = Axes3D(fig)
 	
@@ -150,33 +176,10 @@ def getTraj(big_list, joint_dict_prm):
 	ax.set_zlabel('z')
 
 	ax.plot(pos_list[:,0],pos_list[:,1],pos_list[:,2])
+
+	# anim = animation.FuncAnimation(fig, update, init_func=init, frames=len(pos_list), blit=True)
+	# anim.save('joint_traj_animation.mp4', fps=30)
 	plt.show()
-
-	return pos_list
-
-def init():
-    jointTraj.set_data([], [])
- 
-def update(pos_list, n): 
-    # n = frame counter
-    # calculate the positions of the pendulums
- 
-    x = pos_list[n,0]
-    y = pos_list[n,1]
-    z = pos_list[n,2]
-    
-    # update the line data
-    jointTraj.set_data([0 ,x], [0 ,y], [0,z])
-
-
-def main(): 
-	[joint_dict_util, joint_dict_prm] = getJointDict()
-	big_list = readJointPosData(joint_dict_util)
-	pos_list = getTraj(big_list, joint_dict_prm)
-
-	anim = animation.FuncAnimation(fig, update(pos_list), init_func=init, frames=len(t), blit=True)
-
 
 if __name__ == "__main__":
 	main()
-

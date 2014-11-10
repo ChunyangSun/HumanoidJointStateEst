@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.axes3d import Axes3D
 
 #fullpath = "./data/3/test003.center.RE.dat"
-fullpath = "./data/record002.in.dat"
+fullpath = "./data/2nd/sinwave.out.dat"
 
 #data_dir = "/data"
 #subdirs = [x[0] for x in os.walk(data_dir)]
@@ -57,6 +57,7 @@ def readJointPosData(joint_dict_util):
 	RAO_rel_pos_list = []
 	RAS_rel_pos_list = []
 	RE_rel_pos_list = []
+
 
 	# for root, _, files in subdirs:
  #    	for f in files:
@@ -151,29 +152,30 @@ def getTraj(big_list, joint_dict_prm):
 	ax.plot(pos_list[:,0],pos_list[:,1],pos_list[:,2])
 	plt.show()
 
-# def init():
-#     pendulum1.set_data([], [])
-#     pendulum2.set_data([], [])
+	return pos_list
 
-# def update(n): 
-#     # n = frame counter
-#     # calculate the positions of the pendulums
-#     x1 = + L * sin(x[n, 0])
-#     y1 = - L * cos(x[n, 0])
-#     x2 = x1 + L * sin(x[n, 1])
-#     y2 = y1 - L * cos(x[n, 1])
+def init():
+    jointTraj.set_data([], [])
+ 
+def update(pos_list, n): 
+    # n = frame counter
+    # calculate the positions of the pendulums
+ 
+    x = pos_list[n,0]
+    y = pos_list[n,1]
+    z = pos_list[n,2]
     
-#     # update the line data
-#     pendulum1.set_data([0 ,x1], [0 ,y1])
-#     pendulum2.set_data([x1,x2], [y1,y2])
-
-# anim = animation.FuncAnimation(fig, update, init_func=init, frames=len(t), blit=True)
+    # update the line data
+    jointTraj.set_data([0 ,x], [0 ,y], [0,z])
 
 
 def main(): 
 	[joint_dict_util, joint_dict_prm] = getJointDict()
 	big_list = readJointPosData(joint_dict_util)
-	getTraj(big_list, joint_dict_prm)
+	pos_list = getTraj(big_list, joint_dict_prm)
+
+	anim = animation.FuncAnimation(fig, update(pos_list), init_func=init, frames=len(t), blit=True)
+
 
 if __name__ == "__main__":
 	main()
